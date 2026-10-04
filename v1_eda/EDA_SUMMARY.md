@@ -1,6 +1,6 @@
 # v1_eda: raw data profile (no changes made to data)
 
-Reproduce: run `v1_eda/v1_eda.ipynb` (top to bottom) → `outputs/` (CSV tables, `figures/*.png`)
+Reproduce: put `Sample_Data.xlsx` in `dataset/` (git-ignored), run `v1_eda/v1_eda.ipynb` top to bottom; it creates `outputs/` itself.
 
 | Area | Finding |
 |---|---|
