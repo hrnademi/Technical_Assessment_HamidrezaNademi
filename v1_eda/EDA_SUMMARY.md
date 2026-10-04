@@ -1,6 +1,6 @@
 # v1_eda: raw data profile (no changes made to data)
 
-Reproduce: `python v1_eda/eda.py` → `outputs/` (CSV tables, `eda_log.txt`, `figures/*.png`)
+Reproduce: run `v1_eda/v1_eda.ipynb` (top to bottom) → `outputs/` (CSV tables, `figures/*.png`)
 
 | Area | Finding |
 |---|---|
