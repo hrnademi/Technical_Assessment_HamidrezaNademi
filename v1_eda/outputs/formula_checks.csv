@@ -1,0 +1,7 @@
+test,n,median_abs_err,p99_abs_err,pct_within_1%_rel
+Revenue = Sales*Price,7823,0.0,1.4551915228366852e-11,100.0
+Gross_Profit = Revenue - Sales*COGS,7823,0.0,1.4551915228366852e-11,100.0
+GPM = GP/Revenue,6490,2.5520327010461474e-05,4.948830991608449e-05,100.0
+Turnover = Sales/Inventory,7392,0.04740937427253722,,35.3
+Turnover = Sales*COGS/Inventory,7392,10.826506,,24.4
+Rev_Growth = pct_change(Revenue),7823,1.8816156520981564e-05,4.978336138602573e-05,87.1

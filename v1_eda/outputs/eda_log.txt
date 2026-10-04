@@ -1,0 +1,325 @@
+
+================================================================================
+1. SHAPE / DTYPES
+================================================================================
+(7839, 13) | expected 30 products x 260 weeks = 7800
+Week                          int64
+Product                         str
+Sales_Units                 float64
+Cost_of_Goods_Sold_COGS     float64
+Inventory_Level               int64
+Demand_Forecast             float64
+Price_Per_Unit              float64
+Gross_Profit                float64
+Operating_Profit            float64
+Revenue                     float64
+Inventory_Turnover_Ratio    float64
+Gross_Profit_Margin         float64
+Revenue_Growth              float64
+
+================================================================================
+2. MISSING VALUES
+================================================================================
+                          n_missing   pct
+Week                              0  0.00
+Product                           0  0.00
+Sales_Units                      16  0.20
+Cost_of_Goods_Sold_COGS           0  0.00
+Inventory_Level                   0  0.00
+Demand_Forecast                 609  7.77
+Price_Per_Unit                    0  0.00
+Gross_Profit                      0  0.00
+Operating_Profit                  0  0.00
+Revenue                           0  0.00
+Inventory_Turnover_Ratio          0  0.00
+Gross_Profit_Margin               0  0.00
+Revenue_Growth                    0  0.00
+rows with >=1 missing: 624
+
+================================================================================
+3. PRODUCT NAMES
+================================================================================
+Product
+Barley                   260
+Canned Tomatoes          260
+Canned Tuna              260
+Chickpeas                261
+Cocoa Powder             261
+Coffee - Arabica         261
+Coffee - Robusta         262
+Corn                     260
+Flour - All Purpose      263
+Lentils - Green          261
+Lentils - Red            262
+Milk Powder - Skimmed    260
+Milk Powder - Whole      260
+Oats                     262
+Palm Oil                 261
+Pasta - Spaghetti        262
+Rice - Basmati           263
+Rice - White             262
+Salt - Iodized           263
+Soybean Oil              262
+Spices - Black Pepper    263
+Spices - Turmeric        262
+Sugar - Raw Brown        260
+Sugar - White Refined    262
+Sunflower Oil            260
+Tea - Black Ceylon       260
+Tea - Green              261
+Wheat - Hard Red         262
+Wheat - Soft             261
+Yeast - Dry              262
+n unique raw names: 30
+n unique after trim/lower/whitespace-collapse: 30
+names with leading/trailing/double whitespace: 0
+names with inconsistent case vs. normalised form:
+Series([], )
+
+================================================================================
+4. DUPLICATES
+================================================================================
+exact duplicate rows: 39
+duplicate (Week, Product) keys: 39
+rows involved in key duplication: 78
+key-duplicates that are NOT exact copies: 0
+      Week              Product  Sales_Units  Cost_of_Goods_Sold_COGS  Inventory_Level  Demand_Forecast  Price_Per_Unit  Gross_Profit  Operating_Profit   Revenue  Inventory_Turnover_Ratio  Gross_Profit_Margin  Revenue_Growth
+3636   241            Chickpeas        986.0                    14.45            60745           1072.0           18.26       3756.66           1905.41  18004.36                      0.02               0.2087          0.1475
+3637   241            Chickpeas        986.0                    14.45            60745           1072.0           18.26       3756.66           1905.41  18004.36                      0.02               0.2087          0.1475
+5416   196         Cocoa Powder       1106.0                    33.32             2500           1418.0           43.11      10827.74           5999.99  47679.66                      1.00               0.2271         -0.2795
+5417   196         Cocoa Powder       1106.0                    33.32             2500           1418.0           43.11      10827.74           5999.99  47679.66                      1.00               0.2271         -0.2795
+4899   202     Coffee - Arabica       1937.0                    25.17             2063           1804.0           31.37      12009.40           5828.69  60763.69                      0.77               0.1976          0.2573
+4900   202     Coffee - Arabica       1937.0                    25.17             2063           1804.0           31.37      12009.40           5828.69  60763.69                      0.77               0.1976          0.2573
+5041    83     Coffee - Robusta       1168.0                    18.16              666           1167.0           22.74       5349.44           2208.90  26560.32                      0.64               0.2014         -0.2217
+5042    83     Coffee - Robusta       1168.0                    18.16              666           1167.0           22.74       5349.44           2208.90  26560.32                      0.64               0.2014         -0.2217
+5081   122     Coffee - Robusta       1667.0                    18.25             2333           1900.0           24.21       9935.32           6184.33  40358.07                      0.67               0.2462          2.6035
+5082   122     Coffee - Robusta       1667.0                    18.25             2333           1900.0           24.21       9935.32           6184.33  40358.07                      0.67               0.2462          2.6035
+6404   141  Flour - All Purpose       1001.0                    24.44             9415           1211.0           30.33       5895.89           3223.02  30360.33                      0.13               0.1942         -0.1941
+6405   141  Flour - All Purpose       1001.0                    24.44             9415           1211.0           30.33       5895.89           3223.02  30360.33                      0.13               0.1942         -0.1941
+
+================================================================================
+5. WEEK COVERAGE
+================================================================================
+Week min/max: 1 260 | n unique: 260
+                       count  min  max  missing_weeks
+Product                                              
+Barley                   260    1  260              0
+Canned Tomatoes          260    1  260              0
+Canned Tuna              260    1  260              0
+Chickpeas                260    1  260              0
+Cocoa Powder             260    1  260              0
+Coffee - Arabica         260    1  260              0
+Coffee - Robusta         260    1  260              0
+Corn                     260    1  260              0
+Flour - All Purpose      260    1  260              0
+Lentils - Green          260    1  260              0
+Lentils - Red            260    1  260              0
+Milk Powder - Skimmed    260    1  260              0
+Milk Powder - Whole      260    1  260              0
+Oats                     260    1  260              0
+Palm Oil                 260    1  260              0
+Pasta - Spaghetti        260    1  260              0
+Rice - Basmati           260    1  260              0
+Rice - White             260    1  260              0
+Salt - Iodized           260    1  260              0
+Soybean Oil              260    1  260              0
+Spices - Black Pepper    260    1  260              0
+Spices - Turmeric        260    1  260              0
+Sugar - Raw Brown        260    1  260              0
+Sugar - White Refined    260    1  260              0
+Sunflower Oil            260    1  260              0
+Tea - Black Ceylon       260    1  260              0
+Tea - Green              260    1  260              0
+Wheat - Hard Red         260    1  260              0
+Wheat - Soft             260    1  260              0
+Yeast - Dry              260    1  260              0
+products with missing weeks: {}
+
+================================================================================
+6. DESCRIPTIVE STATS (raw)
+================================================================================
+                           count       mean        std     min       1%       5%        50%         95%         99%         max
+Sales_Units               7823.0   1247.990    809.602    0.00    0.000    0.000   1500.000    2500.000    2500.000    3147.000
+Cost_of_Goods_Sold_COGS   7839.0     24.744     12.500    5.53    5.864    7.100     23.290      47.433      49.370      50.870
+Inventory_Level           7839.0  14950.271  35359.293    0.00    0.000    0.000   2500.000  106198.500  169733.420  201836.000
+Demand_Forecast           7230.0   2049.301    893.680  297.00  422.000  588.450   2066.000    3556.100    4093.000    4910.000
+Price_Per_Unit            7839.0     31.543     15.979    6.84    7.400    9.019     29.530      59.713      64.266      67.630
+Gross_Profit              7839.0   8699.481   8001.518    0.00    0.000    0.000   6738.060   24540.937   31884.759   41975.000
+Operating_Profit          7839.0   4733.535   4653.285    0.00    0.000    0.000   3527.940   14093.615   19343.369   29570.130
+Revenue                   7839.0  40391.395  36268.415    0.00    0.000    0.000  32790.000  111870.748  138313.463  165050.000
+Inventory_Turnover_Ratio  7839.0      0.536      0.443    0.00    0.000    0.000      0.650       1.000       1.000       1.000
+Gross_Profit_Margin       7839.0      0.178      0.084    0.00    0.000    0.000      0.206       0.254       0.258       0.259
+Revenue_Growth            7839.0        inf        NaN   -1.00   -1.000   -1.000      0.000         NaN         NaN         inf
+
+================================================================================
+7. IMPOSSIBLE / SUSPICIOUS VALUES
+================================================================================
+Sales_Units                  <0:    0 | ==0: 1333
+Cost_of_Goods_Sold_COGS      <0:    0 | ==0:    0
+Inventory_Level              <0:    0 | ==0: 1341
+Price_Per_Unit               <0:    0 | ==0:    0
+Revenue                      <0:    0 | ==0: 1336
+Demand_Forecast              <0:    0 | ==0:    0
+Price < COGS rows (negative unit margin): 0
+Sales_Units > Inventory_Level: 1931
+Sales_Units non-integer: 0
+Operating_Profit > Gross_Profit: 0
+
+================================================================================
+8. OUTLIERS (per-product robust z-score, |z|>4 using median/MAD; plus global IQR 3x)
+================================================================================
+                         robust_z>4  global_IQR3x
+column                                           
+Sales_Units                      23             0
+Cost_of_Goods_Sold_COGS           1             0
+Inventory_Level                  15          1349
+Demand_Forecast                   1             0
+Price_Per_Unit                    0             0
+
+most extreme rows:
+       Week              Product  Sales_Units  Cost_of_Goods_Sold_COGS  Inventory_Level  Demand_Forecast  Price_Per_Unit
+3130   256        Lentils - Red       1395.0                    47.85             9722           1416.0           60.00
+3129   255        Lentils - Red       1668.0                    48.84             9617           1595.0           64.78
+3133   259        Lentils - Red       1949.0                    49.12             9456           1892.0           64.78
+3131   257        Lentils - Red       1817.0                    48.57             9405           1743.0           59.92
+3132   258        Lentils - Red       2000.0                    48.97             8905           1934.0           65.20
+3127   253        Lentils - Red       1330.0                    49.69             8843              NaN           60.54
+3128   254        Lentils - Red       1558.0                    47.67             8785           1807.0           60.06
+4723    26     Coffee - Arabica       2014.0                    22.26             3286              NaN           29.22
+3123   249        Lentils - Red       1300.0                    48.32             7962           1324.0           60.23
+6510   244  Flour - All Purpose          0.0                    25.98             2500              NaN           31.42
+4643   206          Tea - Green       1631.0                    28.63             9636           1635.0           37.71
+4972    14     Coffee - Robusta          0.0                    18.73             1500           1671.0           22.57
+5024    66     Coffee - Robusta          0.0                    18.53                0           2050.0           24.10
+5025    67     Coffee - Robusta          0.0                    18.20                0           1988.0           22.39
+5026    68     Coffee - Robusta          0.0                    18.18             2500           1839.0           24.07
+
+================================================================================
+9. DERIVED-COLUMN CONSISTENCY (are given formulas reproducible?)
+================================================================================
+                                        n  median_abs_err  p99_abs_err  pct_within_1%_rel
+test                                                                                     
+Revenue = Sales*Price                7823          0.0000          0.0              100.0
+Gross_Profit = Revenue - Sales*COGS  7823          0.0000          0.0              100.0
+GPM = GP/Revenue                     6490          0.0000          0.0              100.0
+Turnover = Sales/Inventory           7392          0.0474          NaN               35.3
+Turnover = Sales*COGS/Inventory      7392         10.8265          NaN               24.4
+Rev_Growth = pct_change(Revenue)     7823          0.0000          0.0               87.1
+
+Corr Demand_Forecast vs Sales_Units: 0.208
+Baseline forecast MAPE on raw data (%): inf | median: 17.52
+
+================================================================================
+10. PER-PRODUCT SUMMARY
+================================================================================
+                       rows  units_mean  units_cv  cogs_mean  price_mean   inv_mean    rev_total
+Product                                                                                         
+Barley                  260     1334.63      0.69       5.93        7.56    1404.22   2631702.04
+Canned Tomatoes         260     1314.76      0.67      18.12       23.05    1577.68   7942141.54
+Canned Tuna             260     1338.14      0.73      11.27       14.38    1423.54   5013084.42
+Chickpeas               261     1038.68      0.19      14.57       18.63   33954.87   5048426.60
+Cocoa Powder            261     1396.31      0.50      32.52       41.45    2564.33  15125713.14
+Coffee - Arabica        261     1346.40      0.66      24.41       31.14    1579.07  10965332.92
+Coffee - Robusta        262     1333.22      0.36      18.12       22.99    2965.01   8031160.45
+Corn                    260     1398.68      0.63      36.88       46.92    1558.75  17028721.07
+Flour - All Purpose     263     1328.64      0.23      25.51       32.49    8079.69  11367843.81
+Lentils - Green         261     1351.90      0.76      42.42       54.07    1393.11  19106829.98
+Lentils - Red           262     1271.69      0.56      48.62       61.99    2273.02  20621044.64
+Milk Powder - Skimmed   260     1430.65      0.62      13.24       16.92    1526.70   6282140.48
+Milk Powder - Whole     260      803.18      0.20      13.15       16.71   65407.08   3491138.10
+Oats                    262     1415.92      0.65      40.32       51.37    1503.20  18992821.72
+Palm Oil                261     1481.25      0.50      43.91       55.91    2455.82  21622670.19
+Pasta - Spaghetti       262     1397.33      0.70      21.47       27.39    1460.71  10015097.93
+Rice - Basmati          263     1199.74      0.25      21.88       27.90   10930.98   8801045.14
+Rice - White            262     1299.78      0.65      47.74       60.88    1612.41  20712263.22
+Salt - Iodized          263     1238.66      0.78      13.97       17.82    1300.73   5809601.47
+Soybean Oil             262     1384.57      0.61      31.99       40.86    1639.96  14810202.08
+Spices - Black Pepper   263     1435.52      0.60      31.66       40.43    1699.16  15281350.03
+Spices - Turmeric       262      570.49      0.19       7.10        9.03  105326.09   1349338.63
+Sugar - Raw Brown       260     1393.46      0.55      11.99       15.30    1845.62   5549773.72
+Sugar - White Refined   262     1368.87      0.73      12.01       15.29    1391.68   5473431.90
+Sunflower Oil           260      763.71      0.19       7.61        9.71   83993.80   1928519.69
+Tea - Black Ceylon      260     1361.91      0.72      18.68       23.79    1367.25   8386154.19
+Tea - Green             261     1391.84      0.42      28.62       36.53    3120.11  13276718.31
+Wheat - Hard Red        262      554.83      0.20      37.95       48.34  100645.35   7025156.31
+Wheat - Soft            261     1188.67      0.85      31.99       40.84    1248.31  12622395.51
+Yeast - Dry             262     1313.02      0.79      28.20       36.01    1376.53  12316329.61
+
+================================================================================
+11. SEASONALITY SIGNAL (mean Sales_Units index by week-of-year, 52-wk cycle, all products)
+================================================================================
+seasonal index range: 0.868 - 1.234
+yearly mean index (trend): {1: 0.991, 2: 0.985, 3: 0.994, 4: 0.992, 5: 1.037}
+
+================================================================================
+12. ZERO-SALES / CAPS / INF DEEP-DIVE
+================================================================================
+zero-sales rows: 1333 | of which Inventory_Level==0: 431 | Revenue==0: 1333 | Gross_Profit==0: 1333
+Inventory_Level==0 rows with Sales_Units>0: 905
+zero-sales share by product (top 8):
+ Product
+Wheat - Soft             0.352
+Yeast - Dry              0.321
+Salt - Iodized           0.308
+Canned Tuna              0.292
+Lentils - Green          0.291
+Tea - Black Ceylon       0.288
+Sugar - White Refined    0.275
+Pasta - Spaghetti        0.271
+zero-sales run lengths: n_runs=901, median=1, max=6
+Sales_Units == 2500 (cap?): 732 | Inventory_Level == 2500: 1399 | Turnover == 1.0: 2842 | Sales_Units==1500: 1384 | Inventory==1500: 1421
+Inventory value counts (top 6):
+ Inventory_Level
+1500    1421
+2500    1399
+0       1341
+3149       4
+1736       4
+167        4
+Revenue_Growth: inf rows = 897 | ==-1: 905
+Revenue_Growth abs>2 (excluding inf): 165
+Sales_Units NaN rows - Revenue/GP values:
+       Week                Product    Revenue  Gross_Profit  Inventory_Level
+1383    74      Sugar - Raw Brown   24749.40       4692.70             2500
+2177    85            Soybean Oil   59820.00      12210.00             1500
+2226   134            Soybean Oil   21564.19       4464.97                0
+2623    11                 Barley   18950.00       4225.00                0
+3288   153        Lentils - Green  129978.90      23718.96             1873
+3968    52  Milk Powder - Skimmed    2335.20        502.60             2500
+4053   137  Milk Powder - Skimmed   35835.96       7614.88             2448
+4236    60     Tea - Black Ceylon       0.00          0.00             2500
+Demand_Forecast missing share by year:
+ y
+1    0.082
+2    0.078
+3    0.074
+4    0.078
+5    0.077
+Products with huge inventory (mean>5000) -> weeks of cover:
+Product
+Chickpeas               32.7
+Flour - All Purpose      6.1
+Milk Powder - Whole     81.4
+Rice - Basmati           9.1
+Spices - Turmeric      184.6
+Sunflower Oil          110.0
+Wheat - Hard Red       181.4
+Operating_Profit/Gross_Profit ratio describe:
+ count    6503.000
+mean        0.532
+std         0.094
+min         0.254
+25%         0.470
+50%         0.545
+75%         0.605
+max         0.714
+Price vs COGS markup ratio describe:
+ count    7839.000
+mean        1.275
+std         0.043
+min         1.200
+25%         1.237
+50%         1.275
+75%         1.313
+max         1.350
+Sales_Units upper clip? top values: [3147.0, 3063.0, 3012.0, 2956.0, 2846.0]
