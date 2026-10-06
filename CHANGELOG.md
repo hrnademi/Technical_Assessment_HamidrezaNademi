@@ -1,21 +1,25 @@
 # Changelog
 
-**Naming convention:** `part<N>_<topic>_v<version>.<ext>`: every notebook and every generated
-file starts with the task part (`part1_`, `part2_`, ...) and ends with its version (`_v1.1`).
-Each notebook creates an output folder with **the same name as the notebook** (`part1_eda_v1.2.ipynb` → `part1_eda_v1.2/`) when run (only the folder takes the notebook's name; the files inside keep their own versioned names); output folders are git-ignored.
-Previous versions are never overwritten or deleted: a new version is a new notebook,
-and the older notebooks stay in the repo alongside it as history.
+**Naming convention:** `part<N>_<topic>_v<version>.<ext>`: every notebook and generated file starts with the task part (`part1_`, `part2_`, ...) and ends with its version (`_v1.2`).
+Each notebook creates an output folder with the same name as the notebook (git-ignored, except the dashboard app and the Word rulebook). A new version is a new notebook; the previous one moves to `history/`.
+Every results workbook has at most 8 sheets, Summary first.
 
-| Part | Version | Notebook | Generates (when run) | Notes |
-|---|---|---|---|---|
-| 1 – Data engineering (EDA) | v1.1 | `part1_eda_v1.1.ipynb` | `part1_eda_v1.1/v1_eda_results_v1.1.xlsx`, `figures/*_v1.1.png` | Read-only EDA of the raw `Sample_Data.xlsx`; all results in one Excel workbook |
-| 1 – Data engineering (EDA) | v1.2 | `part1_eda_v1.2.ipynb` | `part1_eda_v1.2/v1_eda_results_v1.2.xlsx`, `figures/*_v1.2.png` | Adds a `Summary` sheet (25-row EDA summary with severity and proposed ETL treatment) |
-| 1 – Data engineering (ETL) | v1.0 | `part1_etl_pipeline_v1.0.ipynb` | `part1_etl_pipeline_v1.0/armani_trade_v1.0.db`, `schema_v1.0.sql`, `etl_results_v1.0.xlsx`, `etl_run_v1.0.log`, `figures/*_v1.0.png` | Extract, validate/quarantine, de-duplicate, recover sales, flag anomalies, recompute KPIs, synthetic calendar, SQLite star schema, validation + exception tests, quality scorecard |
-| 1 – Data engineering (ETL) | v1.1 | `part1_etl_pipeline_v1.1.ipynb` | `part1_etl_pipeline_v1.1/armani_trade_v1.1.db`, `schema_v1.1.sql`, `etl_results_v1.1.xlsx`, `etl_run_v1.1.log`, `figures/*_v1.1.png` | Inventory timing fix: sales never exceed the previous row's inventory -> `stock_available_for_sales`, stock-out / stock-limited flags (replace "inventory inconsistent"), turnover on available stock, new evidence sheet + figure |
-| 2 – Forecasting (preprocessing) | v1.0 | `part2_preprocessing_v1.0.ipynb` | `part2_preprocessing_v1.0/forecast_dataset_v1.0.db`, `preprocessing_results_v1.0.xlsx`, `figures/*_v1.0.png` | Stock-censoring classification, legacy-forecast validation, demand reconstruction (CV-tuned seasonal model + blend), calendar-effect tests, product patterns / stock regimes, forecasting dataset |
-| 2 – Forecasting (model comparison) | v1.0 | `part2_forecasting_v1.0.ipynb` | `part2_forecasting_v1.0/forecast_results_v1.0.db`, `forecast_results_v1.0.xlsx`, `figures/*_v1.0.png` | 12 models (baselines, ETS, SARIMAX, structural pooled / per segment, LightGBM global / per segment, Prophet, 2 ensembles) on 4 rolling-origin backtests; free parameters tuned on training windows only; selected model, P10-P90 bands, stock scenario, factor analysis |
-| 3 – Dashboard | v1.0 | `part3_dashboard_v1.0.ipynb` | `part3_dashboard_v1.0/dashboard_app_v1.0.py` (Streamlit app), `dashboard_data_v1.0.db`, `requirements.txt`, `RUN_DASHBOARD_v1.0.md`, `dashboard_results_v1.0.xlsx`, `screenshots/*_v1.0.png` | 8-tab Streamlit dashboard (executive, financial, operations & inventory, sales & credit scenario, forecast, 3-level drill-down, alerts, about); DSO / default risk are assumption-based; 24 tests (ETL reconciliation, unit tests, alert rules, app smoke tests). The app, its data and `requirements.txt` are committed (needed for deployment); `requirements.txt` keeps its standard name for Streamlit Cloud |
-| 4 – Pricing | v1.0 | `part4_pricing_v1.0.ipynb` | `part4_pricing_v1.0/pricing_results_v1.0.xlsx` (24 sheets, Summary first), `pricing_rulebook_v1.0.docx` (Word documentation of the rules; committed), `pricing_plan_v1.0.db`, `figures/fig*_v1.0.png` | Rule-based dynamic pricing engine (scarcity premium, sell-out protection, surplus markdown with profit test, credit-risk rule, cost-floor / competitive-band / weekly-step guardrails); 780-price 26-week plan with plain-language reasons, 52-week replay without look-ahead, money impact as a range over price sensitivity, sensitivity incl. demand-reconstruction risk, stock and credit actions, pilot design; 19 automatic checks; documentation written for non-technical readers |
+## Current versions (repository root)
+| Part | Notebook | Generates | What it does |
+|---|---|---|---|
+| 1 – EDA | `part1_eda_v1.3.ipynb` | `part1_eda_v1.3/v1_eda_results_v1.3.xlsx` | Read-only EDA of the raw data; 8-sheet workbook (Summary = findings and proposed ETL treatment) |
+| 1 – ETL | `part1_etl_pipeline_v1.2.ipynb` | `armani_trade_v1.2.db`, `schema_v1.2.sql`, `etl_results_v1.2.xlsx`, log, figures | Extract, validate/quarantine, de-duplicate, recover, flag, SQLite star schema, exception tests, quality scorecard; inventory-timing fix (`stock_available_for_sales`) |
+| 2 – Preprocessing | `part2_preprocessing_v1.1.ipynb` | `forecast_dataset_v1.1.db`, `preprocessing_results_v1.1.xlsx` | Stock-censoring classification, legacy-forecast validation, demand reconstruction (CV-tuned), calendar effects, product profiles |
+| 2 – Forecasting | `part2_forecasting_v1.2.ipynb` | `forecast_results_v1.2.db`, `forecast_results_v1.2.xlsx` | 13 models on 4 rolling-origin backtests incl. the plain "Size x Season x Growth" recipe; selected model, P10-P90 bands, stock scenario |
+| 3 – Dashboard | `part3_dashboard_v1.1.ipynb` | `dashboard_app_v1.1.py`, `dashboard_data_v1.1.db`, `dashboard_results_v1.1.xlsx`, screenshots | 8-tab Streamlit app with a plain-language bottom line per tab; credit layer is assumption-based; 24 tests |
+| 4 – Pricing | `part4_pricing_v1.1.ipynb` | `pricing_rulebook_v1.1.docx` (committed), `pricing_results_v1.1.xlsx`, figures; adds pricing tables to the dashboard database | Rule-based pricing engine, 780-price plan, 52-week replay, money impact as a range, sensitivity, stock and credit actions, pilot design; 19 checks |
 
-**Portability fix (no change in results, versions unchanged):** all notebooks that write text files (ETL v1.0 / v1.1 log and schema, Part 3 app / requirements / run instructions) now use UTF-8 explicitly, so they run on Windows (default cp1252 cannot encode characters such as the alert icons).
-| 2 – Forecasting (plain-language layer) | v1.1 | `part2_forecasting_v1.1.ipynb` | `part2_forecasting_v1.1/forecast_results_v1.1.xlsx` (32 sheets), `forecast_results_v1.1.db`, `figures/*_v1.1.png` | Adds the plain recipe "Size x Season x Growth" as a named model (4.72% WAPE vs 4.57% for the selected fitted model; level on directly observed weeks: 6.62% vs 6.64%), a worked example (Barley), and four explanatory pictures (shared seasonal rhythm, recipe example, train/test timeline, method tournament by family); new Excel sheets: Plain_Language_Guide, Presentation_Storyline, Recipe_*, Train_Test_Split, Season_Factors, Model_Families. All v1.0 model results are unchanged. The Part 3 dashboard still reads the v1.0 forecast (identical numbers) |
+## Changes in this release (clean-up)
+- Earlier versions moved to `history/`; only the latest notebook of each part is in the root.
+- Results workbooks reduced to the sheets useful for presentation (8 per part, was 12-32); full tables remain in the databases.
+- Notebook text reduced to the explanations that are needed.
+- Dashboard v1.1: plain-language labels, one-sentence bottom line per tab, simpler Overview, new Pricing tab (from Part 4), drill-down tab removed (product selectors in Forecast and Pricing).
+- Part 4 writes its pricing tables into the dashboard database; the pricing Word document is generated by the notebook.
+
+## History (`history/`)
+EDA v1.1-v1.2 · ETL v1.0-v1.1 (v1.1: inventory timing) · preprocessing v1.0 · forecasting v1.0-v1.1 (v1.1: plain recipe model and plain-language layer) · dashboard v1.0 (8 tabs incl. drill-down) · pricing v1.0 (24-sheet workbook).

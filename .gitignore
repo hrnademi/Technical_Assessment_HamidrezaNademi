@@ -9,15 +9,13 @@ dataset/
 v*_eda/
 part*_*/
 
-# ...except what the dashboard needs to be deployed (Streamlit app + its data + dependencies)
-!part3_dashboard_v1.0/
-part3_dashboard_v1.0/*
-!part3_dashboard_v1.0/dashboard_app_v1.0.py
-!part3_dashboard_v1.0/dashboard_data_v1.0.db
-!part3_dashboard_v1.0/requirements.txt
-!part3_dashboard_v1.0/RUN_DASHBOARD_v1.0.md
-
-# Part 4 deliverable: the written pricing rulebook (Word)
-!part4_pricing_v1.0/
-part4_pricing_v1.0/*
-!part4_pricing_v1.0/pricing_rulebook_v1.0.docx
+# ...except what is delivered / needed for deployment
+!part3_dashboard_v1.1/
+part3_dashboard_v1.1/*
+!part3_dashboard_v1.1/dashboard_app_v1.1.py
+!part3_dashboard_v1.1/dashboard_data_v1.1.db
+!part3_dashboard_v1.1/requirements.txt
+!part3_dashboard_v1.1/RUN_DASHBOARD_v1.1.md
+!part4_pricing_v1.1/
+part4_pricing_v1.1/*
+!part4_pricing_v1.1/pricing_rulebook_v1.1.docx
