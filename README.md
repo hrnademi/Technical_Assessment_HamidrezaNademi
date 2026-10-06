@@ -51,7 +51,8 @@ part2_forecasting_v1.0.ipynb, ..._v1.1.ipynb    model comparison and 26-week for
 part3_dashboard_v1.0.ipynb                      builds, tests and documents the dashboard
 part3_dashboard_v1.0/                           deployable app: dashboard_app_v1.0.py, dashboard_data_v1.0.db,
                                                 requirements.txt, RUN_DASHBOARD_v1.0.md
-part4_pricing_v1.0.ipynb                        pricing framework and documentation (rulebook inside)
+part4_pricing_v1.0.ipynb                        pricing framework (rulebook in Section 2)
+part4_pricing_v1.0/pricing_rulebook_v1.0.docx   Word document: the pricing rules and algorithmic logic (Part 4 documentation deliverable)
 CHANGELOG.md                                    every version and what changed
 requirements.txt                                environment for all notebooks
 dataset/                                        put Sample_Data.xlsx here (git-ignored)
@@ -89,7 +90,7 @@ jupyter nbconvert --to notebook --execute --inplace part4_pricing_v1.0.ipynb
 
 **Part 3 – Dashboard.** Financial (gross margin, revenue growth, operating profit), operational (inventory turnover, DSI, service level, lost revenue) and credit KPIs (DSO, A–E default-risk rating), historical trends, 26-week forecast with P10–P90 band, and rule-based alerts (stock-out, overstock, margin, revenue, credit) with drill-down from company to category to product.
 
-**Part 4 – Pricing.** Price follows scarcity and season: a scarcity premium (≤ +8 %), a sell-out protection check, a profit-tested markdown rule for surplus stock, a credit-risk rule (no discounts and a risk premium for D/E), and guardrails (cost floor, −8 % / +10 % competitive band, ±3 % weekly step). The notebook contains the written rulebook, the 26-week plan, a 52-week replay without look-ahead, the money impact as a range over price sensitivity, sensitivity analyses (including the risk that reconstructed demand is too high), stock and credit actions, and a pilot design.
+**Part 4 – Pricing.** Price follows scarcity and season: a scarcity premium (≤ +8 %), a sell-out protection check, a profit-tested markdown rule for surplus stock, a credit-risk rule (no discounts and a risk premium for D/E), and guardrails (cost floor, −8 % / +10 % competitive band, ±3 % weekly step). The written rules are in `part4_pricing_v1.0/pricing_rulebook_v1.0.docx` (also Section 2 of the notebook). The notebook contains the 26-week plan, a 52-week replay without look-ahead, the money impact as a range over price sensitivity, sensitivity analyses (including the risk that reconstructed demand is too high), stock and credit actions, and a pilot design.
 
 ## Key assumptions
 

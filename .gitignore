@@ -16,3 +16,8 @@ part3_dashboard_v1.0/*
 !part3_dashboard_v1.0/dashboard_data_v1.0.db
 !part3_dashboard_v1.0/requirements.txt
 !part3_dashboard_v1.0/RUN_DASHBOARD_v1.0.md
+
+# Part 4 deliverable: the written pricing rulebook (Word)
+!part4_pricing_v1.0/
+part4_pricing_v1.0/*
+!part4_pricing_v1.0/pricing_rulebook_v1.0.docx
