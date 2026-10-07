@@ -63,7 +63,7 @@ CHANGELOG.md                                what each notebook does and how it e
 requirements.txt                            environment for all notebooks
 results/<notebook name>/                    results of running each notebook (committed so the examiner can see them): workbook, figures, databases
 ```
-Running a notebook creates a subfolder `results/<notebook name>` (for example `results/part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. These folders are committed, so the results can be inspected without running anything; running a notebook again overwrites them. Other generated deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
+Running a notebook creates a subfolder `results/<notebook name>` (for example `results/part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 5 sheets, Summary first**, the figures and, where relevant, a database. These folders are committed, so the results can be inspected without running anything; running a notebook again overwrites them. Other generated deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
 
 
 ## Setup and how to run
