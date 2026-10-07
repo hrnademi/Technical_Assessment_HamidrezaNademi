@@ -20,7 +20,7 @@ End-to-end solution for the four parts of the assessment: **ETL and database**, 
 
 ```mermaid
 flowchart LR
-    RAW[(dataset/Sample_Data.xlsx<br/>raw, git-ignored)] --> ETL
+    RAW[(dataset/Sample_Data.xlsx<br/>raw input)] --> ETL
     subgraph P1[Part 1 - ETL]
         ETL[Extract, validate, quarantine,<br/>de-duplicate, recover, flag] --> DB1[(SQLite star schema<br/>dim_product, dim_date,<br/>fact_weekly_sales + audit tables)]
     end
@@ -61,7 +61,7 @@ Armani_Data_Science_Presentation.pdf  19-slide presentation (PDF): approach, tec
 history/                              all earlier development versions (with version suffixes)
 CHANGELOG.md                          what changed in every version
 requirements.txt                      environment for all notebooks
-dataset/                              put Sample_Data.xlsx here (git-ignored)
+dataset/Sample_Data.xlsx              raw input data (committed, so the notebooks run after cloning)
 ```
 The root holds the **final** version of every notebook, without version numbers; all earlier development versions (including the previous `v1.x` of each notebook) are kept in `history/` (they are not meant to be re-run). Each notebook creates an output folder with the same name (git-ignored, except the SQL schema, the dashboard app and the Word rulebook) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. The SQL schema is written by the ETL notebook to `part1_etl_pipeline/schema.sql`.
 
@@ -72,7 +72,6 @@ The root holds the **final** version of every notebook, without version numbers;
 ```bash
 python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-mkdir -p dataset && cp /path/to/Sample_Data.xlsx dataset/   # raw data is not committed
 ```
 
 Run the notebooks **from the repository root, in this order** (each needs the previous outputs):
