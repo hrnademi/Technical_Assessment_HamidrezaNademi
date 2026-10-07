@@ -2,6 +2,8 @@
 
 End-to-end solution for the four parts of the assessment: **ETL and database**, **26-week demand forecasting**, **KPI dashboard**, **dynamic pricing and risk strategy**. Every part is a Jupyter notebook; each notebook creates its own output folder (same name as the notebook) with an Excel workbook of all results.
 
+**Live dashboard:** https://technicalassessmenthamidrezanademi-heclpsghuoz4zkzj5dwhoz.streamlit.app/
+
 ## Results at a glance
 
 | Part | Deliverable | Headline result |
@@ -46,6 +48,7 @@ Each arrow is a file produced by one notebook and read by the next; nothing is p
 ```
 part1_eda_v1.3.ipynb                            raw-data EDA (read-only)
 part1_etl_pipeline_v1.2.ipynb                   ETL pipeline and database
+part1_etl_pipeline_v1.2/schema_v1.2.sql         SQL schema: tables, indexes and views of the star schema
 part2_preprocessing_v1.1.ipynb                  stock censoring and demand reconstruction
 part2_forecasting_v1.2.ipynb                    model comparison and 26-week forecast
 part3_dashboard_v1.1.ipynb                      builds, tests and documents the dashboard
@@ -60,7 +63,7 @@ CHANGELOG.md                                    what changed in every version
 requirements.txt                                environment for all notebooks
 dataset/                                        put Sample_Data.xlsx here (git-ignored)
 ```
-Only the **latest** version of each notebook is in the root; earlier versions are kept in `history/` (they are not meant to be re-run). Each notebook creates an output folder with the same name (git-ignored, except the dashboard app and the Word rulebook) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. The SQL schema is written by the ETL notebook to `part1_etl_pipeline_v1.2/schema_v1.2.sql`.
+Only the **latest** version of each notebook is in the root; earlier versions are kept in `history/` (they are not meant to be re-run). Each notebook creates an output folder with the same name (git-ignored, except the SQL schema, the dashboard app and the Word rulebook) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. The SQL schema is written by the ETL notebook to `part1_etl_pipeline_v1.2/schema_v1.2.sql`.
 
 **Versioning:** every file starts with its part (`part1_`) and ends with its version (`_v1.2`); a new version is a new notebook and the previous one moves to `history/`.
 
@@ -83,7 +86,7 @@ jupyter nbconvert --to notebook --execute --inplace part4_pricing_v1.1.ipynb
 ```
 (or open them in Jupyter and *Run All*). `part1_eda_v1.3` is independent and optional. Run Part 3 **before** Part 4: Part 4 adds its pricing tables to the dashboard database, and re-running Part 3 recreates that database. The Part 3 notebook takes dashboard screenshots with Playwright, so run `playwright install chromium` once before it (the step is skipped if Playwright is missing; the app itself does not need it).
 
-**Dashboard only:** `pip install -r part3_dashboard_v1.1/requirements.txt` then `streamlit run part3_dashboard_v1.1/dashboard_app_v1.1.py`. Deployment steps for Streamlit Community Cloud are in `part3_dashboard_v1.1/RUN_DASHBOARD_v1.0.md`.
+**Dashboard only:** `pip install -r part3_dashboard_v1.1/requirements.txt` then `streamlit run part3_dashboard_v1.1/dashboard_app_v1.1.py`. Deployment steps for Streamlit Community Cloud are in `part3_dashboard_v1.1/RUN_DASHBOARD_v1.1.md`.
 
 ## Part-by-part summary
 
