@@ -53,7 +53,7 @@ part3_dashboard_v1.1/                           deployable app: dashboard_app_v1
                                                 requirements.txt, RUN_DASHBOARD_v1.1.md
 part4_pricing_v1.1.ipynb                        pricing framework (rulebook in Section 2)
 part4_pricing_v1.1/pricing_rulebook_v1.1.docx   Word document: pricing rules and algorithmic logic (Part 4 documentation)
-Armani_Data_Science_Presentation.pptx           18-slide presentation: approach, technical development, results
+Armani_Data_Science_Presentation.pptx           19-slide presentation: approach, technical development, results
                                                 (with a talking-script in the speaker notes of every slide)
 history/                                        all earlier versions of the notebooks (development history)
 CHANGELOG.md                                    what changed in every version
