@@ -61,9 +61,9 @@ Armani_Data_Science_Presentation.pdf        19-slide presentation (PDF): approac
                                             (with a talking-script in the speaker notes of every slide)
 CHANGELOG.md                                what each notebook does and how it evolved
 requirements.txt                            environment for all notebooks
-results_<notebook name>/                    created when a notebook is run (git-ignored): workbook, figures, databases
+results_<notebook name>/                    results of running each notebook (committed so the examiner can see them): workbook, figures, databases
 ```
-Running a notebook creates a folder named `results_<notebook name>` (for example `results_part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. These folders are git-ignored. Committed deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
+Running a notebook creates a folder named `results_<notebook name>` (for example `results_part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. These folders are committed, so the results can be inspected without running anything; running a notebook again overwrites them. Other generated deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
 
 
 ## Setup and how to run

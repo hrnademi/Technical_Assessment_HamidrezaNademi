@@ -1,6 +1,6 @@
 # Changelog
 
-**Naming convention:** notebooks are named `part<N>[_step<M>]_<topic>.ipynb`. Running a notebook writes its results to a folder `results_<notebook name>/` (git-ignored, one Excel workbook of at most 8 sheets with the Summary first, figures, databases). Committed deliverables written by the notebooks: `sql/schema.sql`, `part3_dashboard/` and `docs/pricing_rulebook.docx`.
+**Naming convention:** notebooks are named `part<N>[_step<M>]_<topic>.ipynb`. Running a notebook writes its results to a folder `results_<notebook name>/` (committed; one Excel workbook of at most 8 sheets with the Summary first, figures, databases). Other deliverables written by the notebooks: `sql/schema.sql`, `part3_dashboard/` and `docs/pricing_rulebook.docx`.
 
 ## Notebooks
 | Part | Notebook | Results | What it does |
