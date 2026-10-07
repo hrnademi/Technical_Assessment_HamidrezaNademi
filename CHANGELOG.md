@@ -1,16 +1,16 @@
 # Changelog
 
-**Naming convention:** notebooks are named `part<N>[_step<M>]_<topic>.ipynb`. Running a notebook writes its results to a folder `results_<notebook name>/` (committed; one Excel workbook of at most 8 sheets with the Summary first, figures, databases). Other deliverables written by the notebooks: `sql/schema.sql`, `part3_dashboard/` and `docs/pricing_rulebook.docx`.
+**Naming convention:** notebooks are named `part<N>[_step<M>]_<topic>.ipynb`. Running a notebook writes its results to `results/<notebook name>/` (committed; one Excel workbook of at most 8 sheets with the Summary first, figures, databases). Other deliverables written by the notebooks: `sql/schema.sql`, `part3_dashboard/` and `docs/pricing_rulebook.docx`.
 
 ## Notebooks
 | Part | Notebook | Results | What it does |
 |---|---|---|---|
-| 1 – EDA | `part1_step1_eda.ipynb` | `results_part1_step1_eda/eda_results.xlsx` | Read-only EDA of the raw data; 8-sheet workbook (Summary = findings and proposed ETL treatment) |
-| 1 – ETL | `part1_step2_etl_pipeline.ipynb` | `results_part1_step2_etl_pipeline/` (`armani_trade.db`, `etl_results.xlsx`, log, figures); `sql/schema.sql` | Extract, validate/quarantine, de-duplicate, recover, flag, SQLite star schema, exception tests, quality scorecard; inventory-timing fix (`stock_available_for_sales`) |
-| 2 – Preprocessing | `part2_step1_preprocessing.ipynb` | `results_part2_step1_preprocessing/` (`forecast_dataset.db`, `preprocessing_results.xlsx`) | Stock-censoring classification, legacy-forecast validation, demand reconstruction (CV-tuned), calendar effects, product profiles |
-| 2 – Forecasting | `part2_step2_forecasting.ipynb` | `results_part2_step2_forecasting/` (`forecast_results.db`, `forecast_results.xlsx`) | 13 models on 4 rolling-origin backtests incl. the plain "Size x Season x Growth" recipe; selected model, P10-P90 bands, stock scenario |
-| 3 – Dashboard | `part3_dashboard.ipynb` | `part3_dashboard/` (`dashboard_app.py`, `dashboard_data.db`); `results_part3_dashboard/` (workbook, screenshots) | 8-tab Streamlit app with a plain-language bottom line per tab; credit layer is assumption-based; 24 tests |
-| 4 – Pricing | `part4_pricing.ipynb` | `results_part4_pricing/` (workbook, figures); `docs/pricing_rulebook.docx`; adds pricing tables to the dashboard database | Rule-based pricing engine, 780-price plan, 52-week replay, money impact as a range, sensitivity, stock and credit actions, pilot design; 19 checks |
+| 1 – EDA | `part1_step1_eda.ipynb` | `results/part1_step1_eda/eda_results.xlsx` | Read-only EDA of the raw data; 8-sheet workbook (Summary = findings and proposed ETL treatment) |
+| 1 – ETL | `part1_step2_etl_pipeline.ipynb` | `results/part1_step2_etl_pipeline/` (`armani_trade.db`, `etl_results.xlsx`, log, figures); `sql/schema.sql` | Extract, validate/quarantine, de-duplicate, recover, flag, SQLite star schema, exception tests, quality scorecard; inventory-timing fix (`stock_available_for_sales`) |
+| 2 – Preprocessing | `part2_step1_preprocessing.ipynb` | `results/part2_step1_preprocessing/` (`forecast_dataset.db`, `preprocessing_results.xlsx`) | Stock-censoring classification, legacy-forecast validation, demand reconstruction (CV-tuned), calendar effects, product profiles |
+| 2 – Forecasting | `part2_step2_forecasting.ipynb` | `results/part2_step2_forecasting/` (`forecast_results.db`, `forecast_results.xlsx`) | 13 models on 4 rolling-origin backtests incl. the plain "Size x Season x Growth" recipe; selected model, P10-P90 bands, stock scenario |
+| 3 – Dashboard | `part3_dashboard.ipynb` | `part3_dashboard/` (`dashboard_app.py`, `dashboard_data.db`); `results/part3_dashboard/` (workbook, screenshots) | 8-tab Streamlit app with a plain-language bottom line per tab; credit layer is assumption-based; 24 tests |
+| 4 – Pricing | `part4_pricing.ipynb` | `results/part4_pricing/` (workbook, figures); `docs/pricing_rulebook.docx`; adds pricing tables to the dashboard database | Rule-based pricing engine, 780-price plan, 52-week replay, money impact as a range, sensitivity, stock and credit actions, pilot design; 19 checks |
 
 ## Notes on the current release
 - Results workbooks hold the sheets useful for presentation (8 per part); full tables remain in the databases.

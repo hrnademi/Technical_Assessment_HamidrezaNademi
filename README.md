@@ -1,6 +1,6 @@
 # Armani Middle East Trading – Data Science Technical Assessment
 
-End-to-end solution for the four parts of the assessment: **ETL and database**, **26-week demand forecasting**, **KPI dashboard**, **dynamic pricing and risk strategy**. Every part is a Jupyter notebook; each notebook creates its own `results_<notebook name>` folder with an Excel workbook of all results.
+End-to-end solution for the four parts of the assessment: **ETL and database**, **26-week demand forecasting**, **KPI dashboard**, **dynamic pricing and risk strategy**. Every part is a Jupyter notebook; each notebook creates its own `results/<notebook name>` folder with an Excel workbook of all results.
 
 **Live dashboard:** https://technicalassessmenthamidrezanademi-heclpsghuoz4zkzj5dwhoz.streamlit.app/
 
@@ -61,9 +61,9 @@ Armani_Data_Science_Presentation.pdf        19-slide presentation (PDF): approac
                                             (with a talking-script in the speaker notes of every slide)
 CHANGELOG.md                                what each notebook does and how it evolved
 requirements.txt                            environment for all notebooks
-results_<notebook name>/                    results of running each notebook (committed so the examiner can see them): workbook, figures, databases
+results/<notebook name>/                    results of running each notebook (committed so the examiner can see them): workbook, figures, databases
 ```
-Running a notebook creates a folder named `results_<notebook name>` (for example `results_part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. These folders are committed, so the results can be inspected without running anything; running a notebook again overwrites them. Other generated deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
+Running a notebook creates a subfolder `results/<notebook name>` (for example `results/part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. These folders are committed, so the results can be inspected without running anything; running a notebook again overwrites them. Other generated deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
 
 
 ## Setup and how to run
