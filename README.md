@@ -8,10 +8,10 @@ End-to-end solution for the four parts of the assessment: **ETL and database**, 
 
 | Part | Deliverable | Headline result |
 |---|---|---|
-| 1 – Data engineering | `part1_etl_pipeline_v1.2.ipynb` → SQLite star schema | 7,839 raw rows → 7,800 clean product-weeks (39 exact duplicates dropped, 16 missing sales recovered, 0 rows quarantined); every correction logged |
-| 2 – Forecasting | `part2_preprocessing_v1.1.ipynb`, `part2_forecasting_v1.2.ipynb` | 13 models compared on 4 rolling-origin backtests; selected *shared-curve structural model*: **WAPE 4.57 %** (MAE 97 units, MAPE 5.03 %) vs 5.28 % for the best baseline and ~34 % worse for seasonal naive |
-| 3 – Dashboard | `part3_dashboard_v1.1.ipynb` → Streamlit app | 8 tabs (overview, financial, stock & service, customer credit, forecast, pricing, alerts, notes), each opening with a one-sentence bottom line; 24 automated tests |
-| 4 – Pricing | `part4_pricing_v1.1.ipynb` | 780 recommended prices (30 products × 26 weeks); +$1.3 M profit over 26 weeks in the planning case, positive across every sensitivity tested; 19 automatic checks |
+| 1 – Data engineering | `part1_etl_pipeline.ipynb` → SQLite star schema | 7,839 raw rows → 7,800 clean product-weeks (39 exact duplicates dropped, 16 missing sales recovered, 0 rows quarantined); every correction logged |
+| 2 – Forecasting | `part2_preprocessing.ipynb`, `part2_forecasting.ipynb` | 13 models compared on 4 rolling-origin backtests; selected *shared-curve structural model*: **WAPE 4.57 %** (MAE 97 units, MAPE 5.03 %) vs 5.28 % for the best baseline and ~34 % worse for seasonal naive |
+| 3 – Dashboard | `part3_dashboard.ipynb` → Streamlit app | 8 tabs (overview, financial, stock & service, customer credit, forecast, pricing, alerts, notes), each opening with a one-sentence bottom line; 24 automated tests |
+| 4 – Pricing | `part4_pricing.ipynb` | 780 recommended prices (30 products × 26 weeks); +$1.3 M profit over 26 weeks in the planning case, positive across every sensitivity tested; 19 automatic checks |
 
 ## The key finding that shapes the whole solution
 `Sales_Units` is **capped by the stock available** (`sales = min(demand, stock)`), and the stock a week can sell from is the *previous* row's inventory. About 53 % of product-weeks are stock-limited or out of stock, so observed sales understate demand. Part 1 flags these weeks, Part 2 reconstructs demand and forecasts **demand** (not sales), Part 3 reports lost demand and service level, and Part 4 prices on scarcity.
@@ -46,26 +46,26 @@ Each arrow is a file produced by one notebook and read by the next; nothing is p
 ## Repository structure
 
 ```
-part1_eda_v1.3.ipynb                            raw-data EDA (read-only)
-part1_etl_pipeline_v1.2.ipynb                   ETL pipeline and database
-part1_etl_pipeline_v1.2/schema_v1.2.sql         SQL schema: tables, indexes and views of the star schema
-part2_preprocessing_v1.1.ipynb                  stock censoring and demand reconstruction
-part2_forecasting_v1.2.ipynb                    model comparison and 26-week forecast
-part3_dashboard_v1.1.ipynb                      builds, tests and documents the dashboard
-part3_dashboard_v1.1/                           deployable app: dashboard_app_v1.1.py, dashboard_data_v1.1.db,
-                                                requirements.txt, RUN_DASHBOARD_v1.1.md
-part4_pricing_v1.1.ipynb                        pricing framework (rulebook in Section 2)
-part4_pricing_v1.1/pricing_rulebook_v1.1.docx   Word document: pricing rules and algorithmic logic (Part 4 documentation)
-Armani_Data_Science_Presentation.pdf            19-slide presentation (PDF): approach, technical development, results
-                                                (with a talking-script in the speaker notes of every slide)
-history/                                        all earlier versions of the notebooks (development history)
-CHANGELOG.md                                    what changed in every version
-requirements.txt                                environment for all notebooks
-dataset/                                        put Sample_Data.xlsx here (git-ignored)
+part1_eda.ipynb                       raw-data EDA (read-only)
+part1_etl_pipeline.ipynb              ETL pipeline and database
+part1_etl_pipeline/schema.sql         SQL schema: tables, indexes and views of the star schema
+part2_preprocessing.ipynb             stock censoring and demand reconstruction
+part2_forecasting.ipynb               model comparison and 26-week forecast
+part3_dashboard.ipynb                 builds, tests and documents the dashboard
+part3_dashboard/                      deployable app: dashboard_app.py, dashboard_data.db,
+                                      requirements.txt, RUN_DASHBOARD.md
+part4_pricing.ipynb                   pricing framework (rulebook in Section 2)
+part4_pricing/pricing_rulebook.docx   Word document: pricing rules and algorithmic logic (Part 4 documentation)
+Armani_Data_Science_Presentation.pdf  19-slide presentation (PDF): approach, technical development, results
+                                      (with a talking-script in the speaker notes of every slide)
+history/                              all earlier development versions (with version suffixes)
+CHANGELOG.md                          what changed in every version
+requirements.txt                      environment for all notebooks
+dataset/                              put Sample_Data.xlsx here (git-ignored)
 ```
-Only the **latest** version of each notebook is in the root; earlier versions are kept in `history/` (they are not meant to be re-run). Each notebook creates an output folder with the same name (git-ignored, except the SQL schema, the dashboard app and the Word rulebook) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. The SQL schema is written by the ETL notebook to `part1_etl_pipeline_v1.2/schema_v1.2.sql`.
+The root holds the **final** version of every notebook, without version numbers; all earlier development versions (including the previous `v1.x` of each notebook) are kept in `history/` (they are not meant to be re-run). Each notebook creates an output folder with the same name (git-ignored, except the SQL schema, the dashboard app and the Word rulebook) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. The SQL schema is written by the ETL notebook to `part1_etl_pipeline/schema.sql`.
 
-**Versioning:** every file starts with its part (`part1_`) and ends with its version (`_v1.2`); a new version is a new notebook and the previous one moves to `history/`.
+**Versioning:** files in the root carry no version suffix; during development each new version was saved with a `_vX.Y` suffix and the superseded one moved to `history/` (see `CHANGELOG.md`).
 
 ## Setup and how to run
 
@@ -78,15 +78,15 @@ mkdir -p dataset && cp /path/to/Sample_Data.xlsx dataset/   # raw data is not co
 Run the notebooks **from the repository root, in this order** (each needs the previous outputs):
 
 ```bash
-jupyter nbconvert --to notebook --execute --inplace part1_etl_pipeline_v1.2.ipynb
-jupyter nbconvert --to notebook --execute --inplace part2_preprocessing_v1.1.ipynb
-jupyter nbconvert --to notebook --execute --inplace part2_forecasting_v1.2.ipynb   # longest step (Prophet, LightGBM, backtests)
-jupyter nbconvert --to notebook --execute --inplace part3_dashboard_v1.1.ipynb
-jupyter nbconvert --to notebook --execute --inplace part4_pricing_v1.1.ipynb
+jupyter nbconvert --to notebook --execute --inplace part1_etl_pipeline.ipynb
+jupyter nbconvert --to notebook --execute --inplace part2_preprocessing.ipynb
+jupyter nbconvert --to notebook --execute --inplace part2_forecasting.ipynb   # longest step (Prophet, LightGBM, backtests)
+jupyter nbconvert --to notebook --execute --inplace part3_dashboard.ipynb
+jupyter nbconvert --to notebook --execute --inplace part4_pricing.ipynb
 ```
-(or open them in Jupyter and *Run All*). `part1_eda_v1.3` is independent and optional. Run Part 3 **before** Part 4: Part 4 adds its pricing tables to the dashboard database, and re-running Part 3 recreates that database. The Part 3 notebook takes dashboard screenshots with Playwright, so run `playwright install chromium` once before it (the step is skipped if Playwright is missing; the app itself does not need it).
+(or open them in Jupyter and *Run All*). `part1_eda` is independent and optional. Run Part 3 **before** Part 4: Part 4 adds its pricing tables to the dashboard database, and re-running Part 3 recreates that database. The Part 3 notebook takes dashboard screenshots with Playwright, so run `playwright install chromium` once before it (the step is skipped if Playwright is missing; the app itself does not need it).
 
-**Dashboard only:** `pip install -r part3_dashboard_v1.1/requirements.txt` then `streamlit run part3_dashboard_v1.1/dashboard_app_v1.1.py`. Deployment steps for Streamlit Community Cloud are in `part3_dashboard_v1.1/RUN_DASHBOARD_v1.1.md`.
+**Dashboard only:** `pip install -r part3_dashboard/requirements.txt` then `streamlit run part3_dashboard/dashboard_app.py`. Deployment steps for Streamlit Community Cloud are in `part3_dashboard/RUN_DASHBOARD.md`.
 
 ## Part-by-part summary
 
@@ -96,7 +96,7 @@ jupyter nbconvert --to notebook --execute --inplace part4_pricing_v1.1.ipynb
 
 **Part 3 – Dashboard.** Plain-language headline on every tab; financial (gross margin, revenue growth, operating profit), operational (inventory turnover, DSI, service level, lost revenue) and credit KPIs (DSO, A–E default-risk rating), historical trends, 26-week forecast with P10–P90 band, and rule-based alerts (stock-out, overstock, margin, revenue, credit), plus a Pricing tab with the recommended price for every product-week, and drill-down by product in the Forecast and Pricing tabs.
 
-**Part 4 – Pricing.** Price follows scarcity and season: a scarcity premium (≤ +8 %), a sell-out protection check, a profit-tested markdown rule for surplus stock, a credit-risk rule (no discounts and a risk premium for D/E), and guardrails (cost floor, −8 % / +10 % competitive band, ±3 % weekly step). The written rules are in `part4_pricing_v1.1/pricing_rulebook_v1.1.docx` (also Section 2 of the notebook). The notebook contains the 26-week plan, a 52-week replay without look-ahead, the money impact as a range over price sensitivity, sensitivity analyses (including the risk that reconstructed demand is too high), stock and credit actions, and a pilot design.
+**Part 4 – Pricing.** Price follows scarcity and season: a scarcity premium (≤ +8 %), a sell-out protection check, a profit-tested markdown rule for surplus stock, a credit-risk rule (no discounts and a risk premium for D/E), and guardrails (cost floor, −8 % / +10 % competitive band, ±3 % weekly step). The written rules are in `part4_pricing/pricing_rulebook.docx` (also Section 2 of the notebook). The notebook contains the 26-week plan, a 52-week replay without look-ahead, the money impact as a range over price sensitivity, sensitivity analyses (including the risk that reconstructed demand is too high), stock and credit actions, and a pilot design.
 
 ## Key assumptions
 
@@ -113,7 +113,7 @@ jupyter nbconvert --to notebook --execute --inplace part4_pricing_v1.1.ipynb
 ## Limitations and next steps
 - Credit ratings and pricing sensitivity rest on assumptions until real customer and price-test data exist (Part 4, Section 11, designs the pilot).
 - The pricing engine is per product-week; customer- or channel-level pricing needs customer data.
-- A "Pricing" tab in the dashboard would be a natural next version (`part3_dashboard_v1.1`).
+- A "Pricing" tab in the dashboard would be a natural next version (`part3_dashboard`).
 
 ## Note on AI assistance
 This project was developed with an AI coding assistant (Claude Code). All analysis choices, assumptions and results are documented in the notebooks and `CHANGELOG.md` and were checked by running the code.
