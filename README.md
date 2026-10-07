@@ -55,9 +55,6 @@ part4_pricing_v1.1.ipynb                        pricing framework (rulebook in S
 part4_pricing_v1.1/pricing_rulebook_v1.1.docx   Word document: pricing rules and algorithmic logic (Part 4 documentation)
 Armani_Data_Science_Presentation.pptx           20-slide presentation: approach, technical development, results
                                                 (with a talking-script in the speaker notes of every slide)
-Armani_Project_Description_EN.docx              detailed step-by-step description of the four parts (English, about 70 pages)
-Armani_Presentation_Script_and_QA.docx          slide-by-slide talking script and 45 prepared questions with answers
-Armani_Project_Description_FA.docx              the same document in Persian
 history/                                        all earlier versions of the notebooks (development history)
 CHANGELOG.md                                    what changed in every version
 requirements.txt                                environment for all notebooks
