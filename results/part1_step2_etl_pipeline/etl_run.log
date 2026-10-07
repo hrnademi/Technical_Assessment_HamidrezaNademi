@@ -1,36 +1,36 @@
-17:59:45 | INFO    | ETL | data=/home/user/Technical_Assessment_HamidrezaNademi/dataset/Sample_Data.xlsx | out=/home/user/Technical_Assessment_HamidrezaNademi/results/part1_step2_etl_pipeline
-17:59:45 | INFO    | RUN 20261007T175945Z
-17:59:45 | INFO    | ▶ extract
-17:59:46 | INFO    | ✔ extract | in=None out=7839 | 0.92s
-17:59:46 | INFO    | ▶ transform: standardise & coerce types
-17:59:46 | INFO    |    • infinite_value                  897 rows | set_null
-17:59:46 | INFO    | ✔ transform: standardise & coerce types | in=7839 out=7839 | 0.04s
-17:59:46 | INFO    | ▶ transform: validate (quarantine unusable rows)
-17:59:46 | INFO    | ✔ transform: validate (quarantine unusable rows) | in=7839 out=7839 | 0.01s
-17:59:46 | INFO    | ▶ transform: de-duplicate
-17:59:46 | INFO    |    • duplicate_exact                  39 rows | dropped
-17:59:46 | INFO    | ✔ transform: de-duplicate | in=7839 out=7800 | 0.01s
-17:59:46 | INFO    | ▶ transform: recover missing Sales_Units
-17:59:46 | INFO    |    • missing_sales_recovered          16 rows | imputed_revenue_div_price
-17:59:46 | INFO    | ✔ transform: recover missing Sales_Units | in=7800 out=7800 | 0.01s
-17:59:46 | INFO    | ▶ transform: flag anomalies / outliers
-17:59:46 | INFO    |    • zero_sales                     1329 rows | flagged
-17:59:46 | INFO    |    • sales_pileup                   2116 rows | flagged
-17:59:46 | INFO    |    • inventory_pileup               4143 rows | flagged
-17:59:46 | INFO    |    • inventory_timing_offset         907 rows | reinterpreted
-17:59:46 | INFO    |    • stockout_week                  1329 rows | flagged
-17:59:46 | INFO    |    • stock_limited                  2813 rows | flagged
-17:59:46 | INFO    |    • stock_unknown                    30 rows | flagged
-17:59:46 | INFO    |    • forecast_missing                606 rows | kept_null
-17:59:46 | INFO    |    • sales_outlier                    23 rows | flagged+winsorized_copy
-17:59:46 | INFO    | ✔ transform: flag anomalies / outliers | in=7800 out=7800 | 0.06s
-17:59:46 | INFO    | ▶ transform: recompute derived KPIs
-17:59:46 | INFO    | ✔ transform: recompute derived KPIs | in=7800 out=7800 | 0.01s
-17:59:46 | INFO    | ▶ transform: coverage check (product x week grid)
-17:59:46 | INFO    | ✔ transform: coverage check (product x week grid) | in=7800 out=7800 | 0.01s
-17:59:46 | INFO    | ▶ build dimensions & fact
-17:59:46 | INFO    | ✔ build dimensions & fact | in=7800 out=7800 | 0.03s
-17:59:46 | INFO    | ▶ load to SQLite (single transaction)
-17:59:46 | INFO    | ✔ load to SQLite (single transaction) | in=7800 out=7800 | 0.15s
-17:59:46 | INFO    | ▶ post-load validation
-17:59:46 | INFO    | ✔ post-load validation | in=None out=16 | 0.02s
+18:20:42 | INFO    | ETL | data=/home/user/Technical_Assessment_HamidrezaNademi/dataset/Sample_Data.xlsx | out=/home/user/Technical_Assessment_HamidrezaNademi/results/part1_step2_etl_pipeline
+18:20:42 | INFO    | RUN 20261007T182042Z
+18:20:42 | INFO    | ▶ extract
+18:20:43 | INFO    | ✔ extract | in=None out=7839 | 1.12s
+18:20:43 | INFO    | ▶ transform: standardise & coerce types
+18:20:43 | INFO    |    • infinite_value                  897 rows | set_null
+18:20:43 | INFO    | ✔ transform: standardise & coerce types | in=7839 out=7839 | 0.03s
+18:20:43 | INFO    | ▶ transform: validate (quarantine unusable rows)
+18:20:43 | INFO    | ✔ transform: validate (quarantine unusable rows) | in=7839 out=7839 | 0.01s
+18:20:43 | INFO    | ▶ transform: de-duplicate
+18:20:43 | INFO    |    • duplicate_exact                  39 rows | dropped
+18:20:43 | INFO    | ✔ transform: de-duplicate | in=7839 out=7800 | 0.01s
+18:20:43 | INFO    | ▶ transform: recover missing Sales_Units
+18:20:43 | INFO    |    • missing_sales_recovered          16 rows | imputed_revenue_div_price
+18:20:43 | INFO    | ✔ transform: recover missing Sales_Units | in=7800 out=7800 | 0.01s
+18:20:43 | INFO    | ▶ transform: flag anomalies / outliers
+18:20:43 | INFO    |    • zero_sales                     1329 rows | flagged
+18:20:43 | INFO    |    • sales_pileup                   2116 rows | flagged
+18:20:43 | INFO    |    • inventory_pileup               4143 rows | flagged
+18:20:43 | INFO    |    • inventory_timing_offset         907 rows | reinterpreted
+18:20:43 | INFO    |    • stockout_week                  1329 rows | flagged
+18:20:43 | INFO    |    • stock_limited                  2813 rows | flagged
+18:20:43 | INFO    |    • stock_unknown                    30 rows | flagged
+18:20:43 | INFO    |    • forecast_missing                606 rows | kept_null
+18:20:43 | INFO    |    • sales_outlier                    23 rows | flagged+winsorized_copy
+18:20:43 | INFO    | ✔ transform: flag anomalies / outliers | in=7800 out=7800 | 0.08s
+18:20:43 | INFO    | ▶ transform: recompute derived KPIs
+18:20:43 | INFO    | ✔ transform: recompute derived KPIs | in=7800 out=7800 | 0.01s
+18:20:43 | INFO    | ▶ transform: coverage check (product x week grid)
+18:20:43 | INFO    | ✔ transform: coverage check (product x week grid) | in=7800 out=7800 | 0.01s
+18:20:43 | INFO    | ▶ build dimensions & fact
+18:20:43 | INFO    | ✔ build dimensions & fact | in=7800 out=7800 | 0.03s
+18:20:43 | INFO    | ▶ load to SQLite (single transaction)
+18:20:43 | INFO    | ✔ load to SQLite (single transaction) | in=7800 out=7800 | 0.19s
+18:20:43 | INFO    | ▶ post-load validation
+18:20:43 | INFO    | ✔ post-load validation | in=None out=16 | 0.03s
