@@ -1,6 +1,6 @@
 # Armani Middle East Trading – Data Science Technical Assessment
 
-End-to-end solution for the four parts of the assessment: **ETL and database**, **26-week demand forecasting**, **KPI dashboard**, **dynamic pricing and risk strategy**. Every part is a Jupyter notebook; each notebook creates its own output folder (same name as the notebook) with an Excel workbook of all results.
+End-to-end solution for the four parts of the assessment: **ETL and database**, **26-week demand forecasting**, **KPI dashboard**, **dynamic pricing and risk strategy**. Every part is a Jupyter notebook; each notebook creates its own `results_<notebook name>` folder with an Excel workbook of all results.
 
 **Live dashboard:** https://technicalassessmenthamidrezanademi-heclpsghuoz4zkzj5dwhoz.streamlit.app/
 
@@ -8,8 +8,8 @@ End-to-end solution for the four parts of the assessment: **ETL and database**, 
 
 | Part | Deliverable | Headline result |
 |---|---|---|
-| 1 – Data engineering | `part1_etl_pipeline.ipynb` → SQLite star schema | 7,839 raw rows → 7,800 clean product-weeks (39 exact duplicates dropped, 16 missing sales recovered, 0 rows quarantined); every correction logged |
-| 2 – Forecasting | `part2_preprocessing.ipynb`, `part2_forecasting.ipynb` | 13 models compared on 4 rolling-origin backtests; selected *shared-curve structural model*: **WAPE 4.57 %** (MAE 97 units, MAPE 5.03 %) vs 5.28 % for the best baseline and ~34 % worse for seasonal naive |
+| 1 – Data engineering | `part1_step2_etl_pipeline.ipynb` → SQLite star schema | 7,839 raw rows → 7,800 clean product-weeks (39 exact duplicates dropped, 16 missing sales recovered, 0 rows quarantined); every correction logged |
+| 2 – Forecasting | `part2_step1_preprocessing.ipynb`, `part2_step2_forecasting.ipynb` | 13 models compared on 4 rolling-origin backtests; selected *shared-curve structural model*: **WAPE 4.57 %** (MAE 97 units, MAPE 5.03 %) vs 5.28 % for the best baseline and ~34 % worse for seasonal naive |
 | 3 – Dashboard | `part3_dashboard.ipynb` → Streamlit app | 8 tabs (overview, financial, stock & service, customer credit, forecast, pricing, alerts, notes), each opening with a one-sentence bottom line; 24 automated tests |
 | 4 – Pricing | `part4_pricing.ipynb` | 780 recommended prices (30 products × 26 weeks); +$1.3 M profit over 26 weeks in the planning case, positive across every sensitivity tested; 19 automatic checks |
 
@@ -46,26 +46,25 @@ Each arrow is a file produced by one notebook and read by the next; nothing is p
 ## Repository structure
 
 ```
-part1_eda.ipynb                       raw-data EDA (read-only)
-part1_etl_pipeline.ipynb              ETL pipeline and database
-part1_etl_pipeline/schema.sql         SQL schema: tables, indexes and views of the star schema
-part2_preprocessing.ipynb             stock censoring and demand reconstruction
-part2_forecasting.ipynb               model comparison and 26-week forecast
-part3_dashboard.ipynb                 builds, tests and documents the dashboard
-part3_dashboard/                      deployable app: dashboard_app.py, dashboard_data.db,
-                                      requirements.txt, RUN_DASHBOARD.md
-part4_pricing.ipynb                   pricing framework (rulebook in Section 2)
-part4_pricing/pricing_rulebook.docx   Word document: pricing rules and algorithmic logic (Part 4 documentation)
-Armani_Data_Science_Presentation.pdf  19-slide presentation (PDF): approach, technical development, results
-                                      (with a talking-script in the speaker notes of every slide)
-history/                              all earlier development versions (with version suffixes)
-CHANGELOG.md                          what changed in every version
-requirements.txt                      environment for all notebooks
-dataset/Sample_Data.xlsx              raw input data (committed, so the notebooks run after cloning)
+dataset/Sample_Data.xlsx                    raw input data (committed, so the notebooks run after cloning)
+part1_step1_eda.ipynb                       raw-data EDA (read-only)
+part1_step2_etl_pipeline.ipynb              ETL pipeline and database
+part2_step1_preprocessing.ipynb             stock censoring and demand reconstruction
+part2_step2_forecasting.ipynb               model comparison and 26-week forecast
+part3_dashboard.ipynb                       builds, tests and documents the dashboard
+part4_pricing.ipynb                         pricing framework (rulebook in Section 2)
+sql/schema.sql                              SQL schema: tables, indexes and views of the star schema
+part3_dashboard/                            deployable app: dashboard_app.py, dashboard_data.db,
+                                            requirements.txt, RUN_DASHBOARD.md
+docs/pricing_rulebook.docx                  Word document: pricing rules and algorithmic logic (Part 4 documentation)
+Armani_Data_Science_Presentation.pdf        19-slide presentation (PDF): approach, technical development, results
+                                            (with a talking-script in the speaker notes of every slide)
+CHANGELOG.md                                what each notebook does and how it evolved
+requirements.txt                            environment for all notebooks
+results_<notebook name>/                    created when a notebook is run (git-ignored): workbook, figures, databases
 ```
-The root holds the **final** version of every notebook, without version numbers; all earlier development versions (including the previous `v1.x` of each notebook) are kept in `history/` (they are not meant to be re-run). Each notebook creates an output folder with the same name (git-ignored, except the SQL schema, the dashboard app and the Word rulebook) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. The SQL schema is written by the ETL notebook to `part1_etl_pipeline/schema.sql`.
+Running a notebook creates a folder named `results_<notebook name>` (for example `results_part1_step2_etl_pipeline/`) containing **one Excel workbook of at most 8 sheets, Summary first**, the figures and, where relevant, a database. These folders are git-ignored. Committed deliverables: `sql/schema.sql` (written by the ETL notebook), `part3_dashboard/` (the deployable app, written by the dashboard notebook) and `docs/pricing_rulebook.docx` (written by the pricing notebook).
 
-**Versioning:** files in the root carry no version suffix; during development each new version was saved with a `_vX.Y` suffix and the superseded one moved to `history/` (see `CHANGELOG.md`).
 
 ## Setup and how to run
 
@@ -77,13 +76,13 @@ pip install -r requirements.txt
 Run the notebooks **from the repository root, in this order** (each needs the previous outputs):
 
 ```bash
-jupyter nbconvert --to notebook --execute --inplace part1_etl_pipeline.ipynb
-jupyter nbconvert --to notebook --execute --inplace part2_preprocessing.ipynb
-jupyter nbconvert --to notebook --execute --inplace part2_forecasting.ipynb   # longest step (Prophet, LightGBM, backtests)
+jupyter nbconvert --to notebook --execute --inplace part1_step2_etl_pipeline.ipynb
+jupyter nbconvert --to notebook --execute --inplace part2_step1_preprocessing.ipynb
+jupyter nbconvert --to notebook --execute --inplace part2_step2_forecasting.ipynb   # longest step (Prophet, LightGBM, backtests)
 jupyter nbconvert --to notebook --execute --inplace part3_dashboard.ipynb
 jupyter nbconvert --to notebook --execute --inplace part4_pricing.ipynb
 ```
-(or open them in Jupyter and *Run All*). `part1_eda` is independent and optional. Run Part 3 **before** Part 4: Part 4 adds its pricing tables to the dashboard database, and re-running Part 3 recreates that database. The Part 3 notebook takes dashboard screenshots with Playwright, so run `playwright install chromium` once before it (the step is skipped if Playwright is missing; the app itself does not need it).
+(or open them in Jupyter and *Run All*). `part1_step1_eda.ipynb` is independent and optional. Run Part 3 **before** Part 4: Part 4 adds its pricing tables to the dashboard database, and re-running Part 3 recreates that database. The Part 3 notebook takes dashboard screenshots with Playwright, so run `playwright install chromium` once before it (the step is skipped if Playwright is missing; the app itself does not need it).
 
 **Dashboard only:** `pip install -r part3_dashboard/requirements.txt` then `streamlit run part3_dashboard/dashboard_app.py`. Deployment steps for Streamlit Community Cloud are in `part3_dashboard/RUN_DASHBOARD.md`.
 

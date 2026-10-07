@@ -1,25 +1,18 @@
 # Changelog
 
-**Naming convention:** every notebook and generated file starts with the task part (`part1_`, `part2_`, ...). During development each file also carried a version suffix (`_v1.2`); in the final repository the root holds the latest version **without** the suffix, and every earlier development version (including the previous `v1.x` of each file) is in `history/` with its suffix. The version numbers below identify the last development version of each notebook.
-Each notebook creates an output folder with the same name as the notebook (git-ignored, except the SQL schema, the dashboard app and the Word rulebook).
-Every results workbook has at most 8 sheets, Summary first.
+**Naming convention:** notebooks are named `part<N>[_step<M>]_<topic>.ipynb`. Running a notebook writes its results to a folder `results_<notebook name>/` (git-ignored, one Excel workbook of at most 8 sheets with the Summary first, figures, databases). Committed deliverables written by the notebooks: `sql/schema.sql`, `part3_dashboard/` and `docs/pricing_rulebook.docx`.
 
-## Current versions (repository root)
-| Part | Notebook | Generates | What it does |
+## Notebooks
+| Part | Notebook | Results | What it does |
 |---|---|---|---|
-| 1 – EDA (v1.3) | `part1_eda.ipynb` | `part1_eda/v1_eda_results.xlsx` | Read-only EDA of the raw data; 8-sheet workbook (Summary = findings and proposed ETL treatment) |
-| 1 – ETL (v1.2) | `part1_etl_pipeline.ipynb` | `armani_trade.db`, `schema.sql`, `etl_results.xlsx`, log, figures | Extract, validate/quarantine, de-duplicate, recover, flag, SQLite star schema, exception tests, quality scorecard; inventory-timing fix (`stock_available_for_sales`) |
-| 2 – Preprocessing (v1.1) | `part2_preprocessing.ipynb` | `forecast_dataset.db`, `preprocessing_results.xlsx` | Stock-censoring classification, legacy-forecast validation, demand reconstruction (CV-tuned), calendar effects, product profiles |
-| 2 – Forecasting (v1.2) | `part2_forecasting.ipynb` | `forecast_results.db`, `forecast_results.xlsx` | 13 models on 4 rolling-origin backtests incl. the plain "Size x Season x Growth" recipe; selected model, P10-P90 bands, stock scenario |
-| 3 – Dashboard (v1.1) | `part3_dashboard.ipynb` | `dashboard_app.py`, `dashboard_data.db`, `dashboard_results.xlsx`, screenshots | 8-tab Streamlit app with a plain-language bottom line per tab; credit layer is assumption-based; 24 tests |
-| 4 – Pricing (v1.1) | `part4_pricing.ipynb` | `pricing_rulebook.docx` (committed), `pricing_results.xlsx`, figures; adds pricing tables to the dashboard database | Rule-based pricing engine, 780-price plan, 52-week replay, money impact as a range, sensitivity, stock and credit actions, pilot design; 19 checks |
+| 1 – EDA | `part1_step1_eda.ipynb` | `results_part1_step1_eda/eda_results.xlsx` | Read-only EDA of the raw data; 8-sheet workbook (Summary = findings and proposed ETL treatment) |
+| 1 – ETL | `part1_step2_etl_pipeline.ipynb` | `results_part1_step2_etl_pipeline/` (`armani_trade.db`, `etl_results.xlsx`, log, figures); `sql/schema.sql` | Extract, validate/quarantine, de-duplicate, recover, flag, SQLite star schema, exception tests, quality scorecard; inventory-timing fix (`stock_available_for_sales`) |
+| 2 – Preprocessing | `part2_step1_preprocessing.ipynb` | `results_part2_step1_preprocessing/` (`forecast_dataset.db`, `preprocessing_results.xlsx`) | Stock-censoring classification, legacy-forecast validation, demand reconstruction (CV-tuned), calendar effects, product profiles |
+| 2 – Forecasting | `part2_step2_forecasting.ipynb` | `results_part2_step2_forecasting/` (`forecast_results.db`, `forecast_results.xlsx`) | 13 models on 4 rolling-origin backtests incl. the plain "Size x Season x Growth" recipe; selected model, P10-P90 bands, stock scenario |
+| 3 – Dashboard | `part3_dashboard.ipynb` | `part3_dashboard/` (`dashboard_app.py`, `dashboard_data.db`); `results_part3_dashboard/` (workbook, screenshots) | 8-tab Streamlit app with a plain-language bottom line per tab; credit layer is assumption-based; 24 tests |
+| 4 – Pricing | `part4_pricing.ipynb` | `results_part4_pricing/` (workbook, figures); `docs/pricing_rulebook.docx`; adds pricing tables to the dashboard database | Rule-based pricing engine, 780-price plan, 52-week replay, money impact as a range, sensitivity, stock and credit actions, pilot design; 19 checks |
 
-## Changes in this release (clean-up)
-- Earlier versions moved to `history/`; only the latest notebook of each part is in the root.
-- Results workbooks reduced to the sheets useful for presentation (8 per part, was 12-32); full tables remain in the databases.
-- Notebook text reduced to the explanations that are needed.
-- Dashboard v1.1: plain-language labels, one-sentence bottom line per tab, simpler Overview, new Pricing tab (from Part 4), drill-down tab removed (product selectors in Forecast and Pricing).
+## Notes on the current release
+- Results workbooks hold the sheets useful for presentation (8 per part); full tables remain in the databases.
+- Dashboard: plain-language labels, one-sentence bottom line per tab, simplified Overview, Pricing tab (from Part 4), product selectors in the Forecast and Pricing tabs.
 - Part 4 writes its pricing tables into the dashboard database; the pricing Word document is generated by the notebook.
-
-## History (`history/`)
-EDA v1.1-v1.2 · ETL v1.0-v1.1 (v1.1: inventory timing) · preprocessing v1.0 · forecasting v1.0-v1.1 (v1.1: plain recipe model and plain-language layer) · dashboard v1.0 (8 tabs incl. drill-down) · pricing v1.0 (24-sheet workbook).
